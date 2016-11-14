@@ -15,6 +15,8 @@ public class AddBlockCommand : Command
 
     public override void Execute(Core core)
     {
+        Debug.Log("Command Execute: " + this);
+
         core.CoreFactory.BlockFactory.CreateBlock(position, size);
     }
 

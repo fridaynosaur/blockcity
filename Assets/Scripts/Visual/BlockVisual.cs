@@ -2,8 +2,9 @@
 using System.Collections;
 using System;
 
-public class BlockVisual : MonoBehaviour {
-    private Block block { get; set; }
+public class BlockVisual : MonoBehaviour
+{
+    public Block block { get; set; }
 
 	// Use this for initialization
 	void Start () {

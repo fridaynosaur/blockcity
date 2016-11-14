@@ -5,11 +5,14 @@ public class Core : MonoBehaviour
 {
     public Game Game { get; private set; }
     public CoreFactory CoreFactory { get; private set; }
+    
 
     void Start()
     {
         Init();
     }
+
+
     
     public void Init()
     {

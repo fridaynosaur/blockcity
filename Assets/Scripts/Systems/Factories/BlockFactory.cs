@@ -16,6 +16,11 @@ public class BlockFactory
 
         Block block = blockGameObject.AddComponent<Block>();
         block.Init(coreFactory.IdFactory.CreateId(), position, size);
+
+        BlockVisual visual = blockGameObject.AddComponent<BlockVisual>();
+        visual.block = block;
+
+        blockGameObject.AddComponent<BuildingVisual>();
         
         
         
