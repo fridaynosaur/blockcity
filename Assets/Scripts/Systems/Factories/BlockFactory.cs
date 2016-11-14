@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BlockCity.Core;
+using BlockCity.Visual;
 
 public class BlockFactory
 {
@@ -18,11 +20,9 @@ public class BlockFactory
         block.Init(coreFactory.IdFactory.CreateId(), position, size);
 
         BlockVisual visual = blockGameObject.AddComponent<BlockVisual>();
-        visual.block = block;
+        visual.Block = block;
 
         blockGameObject.AddComponent<BuildingVisual>();
-        
-        
         
         return blockGameObject;
     }
