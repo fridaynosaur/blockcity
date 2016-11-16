@@ -16,11 +16,11 @@ public class BlockCamera : MonoBehaviour
     public float RotateSpeed = 100f;
     public float ZoomSpeed = 100f;
 
-    private float minRotation = 2f; //(float)Math.PI * 2f / 180f;
-    private float maxRotation = 80f; //(float)Math.PI * 80f / 180f;
+    private const float minRotation = 2f;
+    private const float maxRotation = 80f;
+    private const float minDistance = 5f;
 
     private Dictionary<State, Action> stateActions;
-
     private Action StateUpdate;
 
     private Vector3 prevMousePlanePos;
@@ -96,9 +96,10 @@ public class BlockCamera : MonoBehaviour
 
     private void Rotating()
     {
+        // Rotate left-right
         transform.RotateAround(curMousePlanePos, Vector3.up, Time.deltaTime * Input.GetAxis("Mouse X") * RotateSpeed);
         
-
+        // Rotate up-down
         var below = transform.localPosition;
         below.y = 0;
 
@@ -108,33 +109,24 @@ public class BlockCamera : MonoBehaviour
         var perp = Vector3.Cross(v1, v2);
 
         var rotation = Time.deltaTime * Input.GetAxis("Mouse Y") * RotateSpeed;
-
-        Debug.Log(transform.localRotation.eulerAngles.x + "::" + rotation);
-
-        /*if (transform.eulerAngles.x < minRotation && rotation > 0)
-        {
-            rotation = 0;
-        }
-        else if (transform.eulerAngles.x > maxRotation && rotation < 0)
-        {
-            rotation = 0;
-        }*/
         
-        transform.RotateAround(curMousePlanePos, perp, rotation);
-        
-        if (transform.eulerAngles.x < minRotation)
+        // FIX THIS!
+        if (transform.eulerAngles.x + rotation < minRotation)
         {
-            var r = transform.eulerAngles;
+            rotation = transform.eulerAngles.x - minRotation;
+            /*var r = transform.eulerAngles;
             r.x = minRotation;
-            transform.eulerAngles = r;
+            transform.eulerAngles = r;*/
         }
-        else if (transform.localRotation.eulerAngles.x > maxRotation && rotation < 0)
+        else if (transform.eulerAngles.x - rotation > maxRotation)
         {
-            var r = transform.eulerAngles;
+            rotation = transform.eulerAngles.x - maxRotation;
+            /*var r = transform.eulerAngles;
             r.x = maxRotation;
-            transform.eulerAngles = r;
+            transform.eulerAngles = r;*/
         }
 
+        transform.RotateAround(curMousePlanePos, perp, rotation);
 
         if (Input.GetMouseButtonUp(1))
         {
@@ -144,7 +136,24 @@ public class BlockCamera : MonoBehaviour
 
     private void Zooming()
     {
-        transform.Translate(Vector3.forward * (Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * ZoomSpeed));
+        var scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0)
+        {
+            transform.Translate(Vector3.forward * scroll * Time.deltaTime * ZoomSpeed);
+
+            var plane = new Plane(Vector3.up, Vector3.zero);
+
+            var ray = new Ray(Camera.main.transform.localPosition, Camera.main.transform.forward);
+
+            float distance;
+            if (plane.Raycast(ray, out distance))
+            {
+                if (distance <= minDistance)
+                {
+                    transform.Translate(Vector3.back * (minDistance - distance));
+                }
+            }
+        }
     }
 
     private Vector3 GetMousePositionOnPlane()
