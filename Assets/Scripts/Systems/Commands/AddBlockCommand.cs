@@ -17,7 +17,9 @@ public class AddBlockCommand : Command
     {
         Debug.Log("Command Execute: " + this);
 
-        core.CoreFactory.BlockFactory.CreateBlock(position, size);
+        GameObject block = core.CoreFactory.BlockFactory.CreateBlock(position, size);
+
+        core.visualCreator.AddBlock(block);
     }
 
 

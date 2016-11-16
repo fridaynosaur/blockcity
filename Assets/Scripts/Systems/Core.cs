@@ -3,16 +3,20 @@ using System.Collections;
 
 public class Core : MonoBehaviour
 {
+    public VisualHolder visualCreator;
+
     public Game Game { get; private set; }
     public CoreFactory CoreFactory { get; private set; }
-    
 
-    void Start()
+    void Awake()
     {
+        if (visualCreator == null)
+        {
+            throw new MissingComponentException();
+        }
+
         Init();
     }
-
-
     
     public void Init()
     {
@@ -24,12 +28,4 @@ public class Core : MonoBehaviour
     {
         command.Execute(this);
     }
-
-    public void Kuku()
-    {
-
-    }
-
-
-
 }
