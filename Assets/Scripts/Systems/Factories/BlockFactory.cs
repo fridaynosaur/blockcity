@@ -12,7 +12,7 @@ public class BlockFactory
         this.coreFactory = coreFactory;
     }
 
-    public GameObject CreateBlock(Vector3 position, Vector3 size)
+    public Block CreateBlock(Vector3 position, Vector3 size)
     {
         GameObject blockGameObject = new GameObject();
 
@@ -24,6 +24,6 @@ public class BlockFactory
 
         blockGameObject.AddComponent<BuildingVisual>();
         
-        return blockGameObject;
+        return block;
     }
 }

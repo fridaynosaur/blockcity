@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using BlockCity.Core;
 
 public class AddBlockCommand : Command
 {
@@ -16,10 +17,17 @@ public class AddBlockCommand : Command
     public override void Execute(Core core)
     {
         Debug.Log("Command Execute: " + this);
+        Debug.Log("Command Execute: pos: " + position);
 
-        GameObject block = core.CoreFactory.BlockFactory.CreateBlock(position, size);
+        if (!core.Grid.IsFree(position))
+        {
+            return;
+        }
 
-        core.visualCreator.AddBlock(block);
+        Block block = core.CoreFactory.BlockFactory.CreateBlock(position, size);
+        core.Grid.AddBlock(block, position);
+
+        core.visuals.AddBlock(block);
     }
 
 

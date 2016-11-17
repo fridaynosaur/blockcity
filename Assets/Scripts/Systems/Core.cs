@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BlockCity.Core;
 
 public class Core : MonoBehaviour
 {
-    public VisualHolder visualCreator;
+    public Visuals visuals;
 
     public Game Game { get; private set; }
     public CoreFactory CoreFactory { get; private set; }
+    public Grid2d Grid { get; private set; }
+    
 
     void Awake()
     {
-        if (visualCreator == null)
+        if (visuals == null)
         {
             throw new MissingComponentException();
         }
@@ -22,6 +25,7 @@ public class Core : MonoBehaviour
     {
         Game = new Game();
         CoreFactory = new CoreFactory();
+        Grid = new Grid2d(500);
     }
 
     public void SendCommand(Command command)
