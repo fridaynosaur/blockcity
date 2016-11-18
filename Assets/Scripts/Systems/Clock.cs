@@ -1,33 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Clock : MonoBehaviour
+namespace BlockCity
 {
-    public int hz;
-    private float tickRate;
-    private Core core;
-
-    public void StartTicking()
+    public class Clock : MonoBehaviour
     {
-        StartCoroutine(Tick());
-    }
+        public int hz;
+        private float tickRate;
+        private Core core;
 
-    private IEnumerator Tick()
-    {
-        while (true)
+        public void StartTicking()
         {
-            core.Tick();
+            StartCoroutine(Tick());
+        }
 
-            yield return new WaitForSeconds(tickRate);
+        private IEnumerator Tick()
+        {
+            while (true)
+            {
+                core.Tick();
+
+                yield return new WaitForSeconds(tickRate);
+            }
+        }
+
+        public void Init(Core core, int hz)
+        {
+            this.hz = hz;
+            this.core = core;
+            this.tickRate = 1f / hz;
         }
     }
-
-    public void Init(Core core, int hz)
-    {
-        this.hz = hz;
-        this.core = core;
-        this.tickRate = 1f / hz;
-    }
-    
-	
 }

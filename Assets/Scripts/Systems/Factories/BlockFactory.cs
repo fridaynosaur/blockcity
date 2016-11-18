@@ -32,9 +32,14 @@ public class BlockFactory
     {
         switch(type)
         {
-            case BuildingTypes.Road:            return "Road";
-            case BuildingTypes.ElectricPlant:   return "ElectricPlant";
-            case BuildingTypes.House:           return "House";
+            case BuildingTypes.Interconnect:
+                return "Connectors/Interconnect";
+
+            case BuildingTypes.ElectricPlant:
+                return "Buildings/ElectricPlant";
+
+            case BuildingTypes.House:
+                return "Buildings/House";
 
             default:
                 Debug.LogWarning("Unknown building type: " + type);
@@ -48,7 +53,7 @@ public class BlockFactory
     {
         switch(type)
         {
-            case BuildingTypes.Road:
+            case BuildingTypes.Interconnect:
                 break;
 
             case BuildingTypes.ElectricPlant:

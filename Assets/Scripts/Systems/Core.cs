@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using BlockCity.Core;
 using System;
 
 namespace BlockCity 
 {	
 	public class Core : MonoBehaviour
 	{
-		
-		public Visuals Visuals { get; private set; }
+
+        public Visuals Visuals;
 
 		public Clock Clock { get; private set; }
 		public Game Game { get; private set; }
