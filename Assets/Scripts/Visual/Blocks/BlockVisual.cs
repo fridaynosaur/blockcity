@@ -4,33 +4,37 @@ using System;
 using BlockCity.Core;
 
 namespace BlockCity.Visual 
-{	
-	public class BlockVisual : MonoBehaviour
+{
+    public class BlockVisual : MonoBehaviour
     {
-		public Block Block { get; set; }
+        public const string PREFAB_PATH = "Prefabs/Buildings/";
+        public const string PREFAB_SUFFIX = "Prefab";
+
+        public Block Block { get; set; }
+        public string PrefabName { get; set; }
 
         void Start()
         {
             if (Block == null)
                 throw new MissingComponentException();
+
+            if (PrefabName == null)
+            {
+                throw new MissingComponentException();
+            }
+
+            LoadPrefab(PrefabName);
         }
 
-        /*void Start ()
+        private void LoadPrefab(string name)
         {
-	        transform.localPosition = TransformPosition(Block.Position);
-		}
+            var model = Resources.Load(PREFAB_PATH + name + PREFAB_SUFFIX);
 
-	    private Vector3 TransformPosition(Vector3 position)
-	    {
-	        position.Scale(new Vector3(25f, 25f, 25f));
+            var go = Instantiate(model) as GameObject;
 
-	        return position;
-	    }
-
-	    // Update is called once per frame
-	    void Update () {
-		
-		}*/
-
+            go.transform.parent = transform;
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+        }
 	}
 }

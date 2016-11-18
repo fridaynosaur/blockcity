@@ -7,11 +7,13 @@ public class AddBlockCommand : Command
 {
     private Vector3 position;
     private Vector3 size;
+    private string type;
 
-    public AddBlockCommand(Vector3 position, Vector3 size)
+    public AddBlockCommand(Vector3 position, Vector3 size, string type)
     {
         this.position = position;
         this.size = size;
+        this.type = type;
     }
 
     public override void Execute(Core core)
@@ -24,7 +26,7 @@ public class AddBlockCommand : Command
             return;
         }
 
-        Block block = core.CoreFactory.BlockFactory.CreateBlock(position, size);
+        Block block = core.CoreFactory.BlockFactory.CreateBlock(position, size, type);
         core.Grid.AddBlock(block, position);
 
         core.visuals.AddBlock(block);

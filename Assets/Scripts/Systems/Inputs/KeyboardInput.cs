@@ -14,11 +14,21 @@ public class KeyboardInput : MonoBehaviour
 	void Update ()
     {
 	
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            GetComponentInParent<UIInputManager>().CreateBuildingAtMousePosition();
+            GetComponentInParent<UIInputManager>().CreateBuildingAtMousePosition(BuildingTypes.House);
         }
-	}
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GetComponentInParent<UIInputManager>().CreateBuildingAtMousePosition(BuildingTypes.Road);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            GetComponentInParent<UIInputManager>().CreateBuildingAtMousePosition(BuildingTypes.ElectricPlant);
+        }
+    }
 
 
 }

@@ -17,18 +17,13 @@ public class UIInputManager : MonoBehaviour
 
         mouseInput = GetComponentInChildren<MouseInput>();
     }
-
-    public void CreateBuildingOfRandomSize()
-    {
-        core.SendCommand(new AddBlockCommand(Vector3.zero, Vector3.one));
-    }
-
-    public void CreateBuildingAtMousePosition()
+    
+    public void CreateBuildingAtMousePosition(string type)
     {
         Vector3 gridPos = mouseInput.ReadTerrainPosition();
 
         gridPos = visuals.GridVisual.GridCalc.GetGridPositionFromWorld(gridPos);
 
-        core.SendCommand(new AddBlockCommand(gridPos, Vector3.one));
+        core.SendCommand(new AddBlockCommand(gridPos, Vector3.one, type));
     }
 }
