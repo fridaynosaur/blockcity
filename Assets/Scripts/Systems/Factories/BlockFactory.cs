@@ -5,11 +5,11 @@ using BlockCity.Visual;
 
 public class BlockFactory
 {
-    private CoreFactory coreFactory;
+    private Core core;
 
-    public BlockFactory(CoreFactory coreFactory)
+    public BlockFactory(Core core)
     {
-        this.coreFactory = coreFactory;
+        this.core = core;
     }
 
     public Block CreateBlock(Vector3 position, Vector3 size, string type)
@@ -17,13 +17,13 @@ public class BlockFactory
         GameObject blockGameObject = new GameObject();
 
         Block block = blockGameObject.AddComponent<Block>();
-        block.Init(coreFactory.IdFactory.CreateId(), position, size);
+        block.Init(core.CoreFactory.IdFactory.CreateId(), position, size);
+
+        CreateComponentsByType(type, block);
 
         BlockVisual visual = blockGameObject.AddComponent<BlockVisual>();
         visual.PrefabName = GetPrefabName(type);
         visual.Block = block;
-
-        //blockGameObject.AddComponent<BuildingVisual>();
         
         return block;
     }
@@ -43,6 +43,35 @@ public class BlockFactory
 
         return null;
     }
-    
-    
+
+    private void CreateComponentsByType(string type, Block block)
+    {
+        switch(type)
+        {
+            case BuildingTypes.Road:
+                break;
+
+            case BuildingTypes.ElectricPlant:
+                CreateElectricPlant(block);
+                break;
+
+            case BuildingTypes.House:
+                CreateHouse(block);
+                break;
+        }
+    }
+
+    private void CreateElectricPlant(Block block)
+    {
+        var generator = block.gameObject.AddComponent<Generator>();
+        generator.Init(core.Inventory, Currency.Power, 5, 1);
+    }
+
+    private void CreateHouse(Block block)
+    {
+        var generator = block.gameObject.AddComponent<Generator>();
+        generator.Init(core.Inventory, Currency.Power, -1, 1);
+    }
+
+
 }

@@ -4,11 +4,10 @@ using System.Collections;
 public class IdFactory
 {
     private int id = 0;
-    private CoreFactory coreFactory;
 
-    public IdFactory(CoreFactory coreFactory)
+    public IdFactory()
     {
-        this.coreFactory = coreFactory;
+
     }
     
 	public int CreateId()

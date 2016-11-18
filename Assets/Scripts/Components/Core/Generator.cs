@@ -8,11 +8,23 @@ public class Generator : MonoBehaviour
     public int interval;
 
     private float lastUpdateTime;
+    private Inventory inventory;
 
-	// Use this for initialization
+	
+    public void Init(Inventory inventory, string item, int rate, int interval)
+    {
+        this.inventory = inventory;
+        this.item = item;
+        this.rate = rate;
+        this.interval = interval;
+    }
+
 	void Start ()
     {
-	
+	    if (inventory == null)
+        {
+            throw new MissingReferenceException();
+        }
 	}
 	
 	void Update ()
@@ -20,12 +32,16 @@ public class Generator : MonoBehaviour
 	    if (Time.time - lastUpdateTime > interval)
         {
             lastUpdateTime = Time.time;
+
+            Generate();
         }
 	}
 
     private void Generate()
     {
         Debug.Log("Generator:: Generate: " + item + " rate: " + rate);
+
+        inventory.AddQuantity(item, rate);
     }
     
 }
