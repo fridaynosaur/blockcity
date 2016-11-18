@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BlockCity;
 
-public abstract class Command
-{
-    public abstract void Execute(Core core);
-    
+namespace BlockCity {
+	public abstract class Command
+	{
+	    public abstract void Execute(Core core);
+	    
+	}
 }

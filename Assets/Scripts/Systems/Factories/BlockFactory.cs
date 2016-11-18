@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using BlockCity.Core;
+using BlockCity;
 using BlockCity.Visual;
 
 public class BlockFactory

@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-namespace BlockCity.Core
+namespace BlockCity
 {
     public class Grid2d
     {
