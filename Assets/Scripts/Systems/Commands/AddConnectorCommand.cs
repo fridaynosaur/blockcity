@@ -26,7 +26,7 @@ namespace BlockCity.Systems {
 				return;
 			}
 
-			//Interconnect connect = core.CoreFactory.ConnectorFactory.CreateBlock (position, size, type);
+			//Interconnect connect = core.CoreFactory.ConnectorFactory
 			//core.Grid.AddBlock(block, position);
 			//core.visuals.AddBlock(block);
 		}

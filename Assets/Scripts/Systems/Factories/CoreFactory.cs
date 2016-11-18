@@ -13,6 +13,7 @@ namespace BlockCity {
 	    {
 	        IdFactory = new IdFactory();
 	        BlockFactory = new BlockFactory(core);
+	        ConnectorFactory = new ConnectorFactory (this);
 	    }
 	}    
 }
