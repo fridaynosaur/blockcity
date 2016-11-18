@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using BlockCity.Core;
+using BlockCity;
 
 namespace BlockCity.Visual 
 {
     public class BlockVisual : MonoBehaviour
     {
-        public const string PREFAB_PATH = "Prefabs/Buildings/";
+        public const string PREFAB_PATH = "Prefabs/";
         public const string PREFAB_SUFFIX = "Prefab";
 
         public Block Block { get; set; }

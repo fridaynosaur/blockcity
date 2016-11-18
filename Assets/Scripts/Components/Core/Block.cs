@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace BlockCity.Core {
+namespace BlockCity {
 	
 	public class Block : MonoBehaviour
 	{
