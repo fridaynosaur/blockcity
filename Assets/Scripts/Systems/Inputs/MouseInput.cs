@@ -15,7 +15,10 @@ public class MouseInput : MonoBehaviour
 	void Update ()
     {
         //Vector3 mousePos = ReadTerrainPosition();
-        ReadTerrainPosition();
+		if (Camera.main != null) {
+			ReadTerrainPosition();
+		}
+        
     }
 
     public Vector3 ReadTerrainPosition()

@@ -22,11 +22,17 @@ namespace BlockCity {
 	    
 	    public void CreateBuildingAtMousePosition(string type)
 	    {
-	        Vector3 gridPos = mouseInput.ReadTerrainPosition();
-
-	        gridPos = visuals.GridVisual.GridCalc.GetGridPositionFromWorld(gridPos);
+			Vector3 gridPos = visuals.GetGridPositionFromMousePosition (mouseInput);
 
 	        core.SendCommand(new AddBlockCommand(gridPos, Vector3.one, type));
 	    }
+
+		public void CreateRoadAtPosition(string type) {
+			Vector3 gridPos = visuals.GetGridPositionFromMousePosition (mouseInput);
+
+			core.SendCommand (new AddRoadCommand (gridPos, Vector3.one, type));
+		}
+
+
 	}
 }

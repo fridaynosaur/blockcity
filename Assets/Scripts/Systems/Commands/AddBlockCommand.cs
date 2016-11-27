@@ -20,18 +20,19 @@ namespace BlockCity {
 
 	    public override void Execute(Core core)
 	    {
-	        Debug.Log("Command Execute: " + this);
-	        Debug.Log("Command Execute: pos: " + position);
-
+			Debug.Log("Command Execute: " + this.ToString() + " of type " + type);
+	        
 	        if (!core.Grid.IsFree(position))
 	        {
 	            return;
 	        }
 
 	        Block block = core.CoreFactory.BlockFactory.CreateBlock(position, size, type);
-	        core.Grid.AddBlock(block, position);
 
-	        core.Visuals.AddBlock(block);
+			// todo: proc se tohle dela v commandu? 
+			// Nemel by to spravovat nejakej jinej objekt? Co kdyz pak budeme potrebovat referenci z visual na nas "core" objekt?
+	        core.Grid.AddBlock(block, position);
+			core.Visuals.AddBlock(block);
 	    }
 
 

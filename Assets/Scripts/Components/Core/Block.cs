@@ -11,13 +11,14 @@ namespace BlockCity {
 
 	    void Awake()
 	    {
-	        Debug.Log("Awake ");
+			// nah
+	        //Debug.Log("Awake ");
 	    }
 
 		// Use this for initialization
 		void Start ()
 	    {
-	        Debug.Log("Start " + this + this.id);
+			Debug.Log("Created " + this + " id=" + this.id);
 	    }
 		
 		// Update is called once per frame
@@ -25,7 +26,7 @@ namespace BlockCity {
 	    {
 		}
 
-	    public void Init(int id, Vector3 position, Vector3 size)
+		public void Init(int id, Vector3 position, Vector3 size)
 	    {
 	        this.id = id;
 	        this.Position = position;

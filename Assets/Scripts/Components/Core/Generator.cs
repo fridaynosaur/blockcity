@@ -39,7 +39,8 @@ public class Generator : MonoBehaviour
 
     private void Generate()
     {
-        Debug.Log("Generator:: Generate: " + item + " rate: " + rate);
+		// spammer
+        //Debug.Log("Generator:: Generate: " + item + " rate: " + rate);
 
         inventory.AddQuantity(item, rate);
     }

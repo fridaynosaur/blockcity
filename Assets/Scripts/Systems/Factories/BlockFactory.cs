@@ -14,7 +14,7 @@ public class BlockFactory
 
     public Block CreateBlock(Vector3 position, Vector3 size, string type)
     {
-        GameObject blockGameObject = new GameObject();
+        GameObject blockGameObject = new GameObject(type);
 
         Block block = blockGameObject.AddComponent<Block>();
         block.Init(core.CoreFactory.IdFactory.CreateId(), position, size);
@@ -32,13 +32,10 @@ public class BlockFactory
     {
         switch(type)
         {
-            case BuildingTypes.Interconnect:
-                return "Connectors/Interconnect";
-
-            case BuildingTypes.ElectricPlant:
+            case BuildingType.ElectricPlant:
                 return "Buildings/ElectricPlant";
 
-            case BuildingTypes.House:
+            case BuildingType.House:
                 return "Buildings/House";
 
             default:
@@ -53,14 +50,12 @@ public class BlockFactory
     {
         switch(type)
         {
-            case BuildingTypes.Interconnect:
-                break;
 
-            case BuildingTypes.ElectricPlant:
+            case BuildingType.ElectricPlant:
                 CreateElectricPlant(block);
                 break;
 
-            case BuildingTypes.House:
+            case BuildingType.House:
                 CreateHouse(block);
                 break;
         }
@@ -69,13 +64,13 @@ public class BlockFactory
     private void CreateElectricPlant(Block block)
     {
         var generator = block.gameObject.AddComponent<Generator>();
-        generator.Init(core.Inventory, Currency.Power, 5, 1);
+        generator.Init(core.Inventory, Resource.Power, 5, 1);
     }
 
     private void CreateHouse(Block block)
     {
         var generator = block.gameObject.AddComponent<Generator>();
-        generator.Init(core.Inventory, Currency.Power, -1, 1);
+        generator.Init(core.Inventory, Resource.Power, -1, 1);
     }
 
 

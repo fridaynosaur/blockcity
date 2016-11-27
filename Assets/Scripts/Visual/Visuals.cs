@@ -29,5 +29,11 @@ namespace BlockCity {
 	        block.transform.localPosition = GridVisual.GridCalc.GetWorldPositionFromGrid(block.Position);
 	    }
 
+		public Vector3 GetGridPositionFromMousePosition(MouseInput mouseInput) {
+			Vector3 gridPos = mouseInput.ReadTerrainPosition();
+
+			return GridVisual.GridCalc.GetGridPositionFromWorld(gridPos);
+		}
+
 	}
 }

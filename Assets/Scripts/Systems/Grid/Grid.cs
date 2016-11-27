@@ -43,17 +43,27 @@ namespace BlockCity
 
         public bool IsFree(int x, int y)
         {
-            if (!IsValid(x, y))
+			if (!IsValid(x, y))
             {
                 return false;
             }
 
-            return GetBlock(x, y) == null;
+			bool result = GetBlock(x, y) == null;
+
+			if (!result)
+				Debug.Log ("Grid[" + x + "," + y + "] " + (result ? "Free" : "Not Free") );
+
+			return result;
         }
 
         public bool IsValid(int x, int y)
         {
-            return x < Size && y < Size && x >= 0 && y >= 0;
+			bool result = x < Size && y < Size && x >= 0 && y >= 0;
+
+			if (!result)
+				Debug.Log ("Grid[" + x + "," + y + "] " + (result ? "Valid" : "Invalid") );
+
+			return result;
         }
 
         public Block GetBlock(int x, int y)

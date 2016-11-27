@@ -6,7 +6,7 @@ public class Inventory
 {
     private Dictionary<string, int> itemIntances;
 
-    private List<string> relativeItems = new List<string>() { Currency.Power };
+    private List<string> relativeItems = new List<string>() { Resource.Power };
     
 
     public Inventory()
@@ -35,7 +35,8 @@ public class Inventory
             itemIntances[item] += quantity;
         }
 
-        Debug.Log("Inventory:: AddQuantity: Item: " + item + " = " + quantity + "; total = " + itemIntances[item]);
+		// spammer
+        //Debug.Log("Inventory:: AddQuantity: Item: " + item + " = " + quantity + "; total = " + itemIntances[item]);
     }
 
     public void AddQuantity(string item, int quantity)
@@ -49,7 +50,8 @@ public class Inventory
             itemIntances[item] += quantity;
         }
 
-        Debug.Log("Inventory:: AddQuantity: Item: " + item + " = " + quantity + "; total = " + itemIntances[item]);
+		// spammer
+        //Debug.Log("Inventory:: AddQuantity: Item: " + item + " = " + quantity + "; total = " + itemIntances[item]);
     }
     
     public int GetQuantity(string item)
@@ -74,7 +76,8 @@ public class Inventory
     {
         foreach (var relative in relativeItems)
         {
-            Debug.Log("Relative: " + relative + " = " + itemIntances[relative]);
+			// hroznej spam
+            //Debug.Log("Relative: " + relative + " = " + itemIntances[relative]);
 
             itemIntances[relative] = 0;
         }
